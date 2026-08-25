@@ -1,0 +1,40 @@
+"""
+Módulo de análisis de riesgo académico.
+"""
+
+import pandas as pd
+
+
+def calcular_riesgo(df: pd.DataFrame, umbral_promedio: float = 3.0, umbral_caida: float = 0.8) -> pd.DataFrame:
+    df = df.copy()
+
+    columnas_notas = [c for c in df.columns if c.startswith("nota_corte")]
+    if not columnas_notas:
+        raise ValueError("El archivo no tiene columnas 'nota_corteX' con las notas parciales.")
+
+    df["promedio"] = df[columnas_notas].mean(axis=1).round(2)
+    df["caida"] = (df[columnas_notas[0]] - df[columnas_notas[-1]]).round(2)
+
+    def evaluar(row):
+        motivos = []
+        if row["promedio"] < umbral_promedio:
+            motivos.append(f"promedio {row['promedio']} por debajo de {umbral_promedio}")
+        if row["caida"] >= umbral_caida:
+            motivos.append(f"caída de {row['caida']} puntos entre el primer y último corte")
+        return pd.Series({
+            "en_riesgo": len(motivos) > 0,
+            "motivo": "; ".join(motivos) if motivos else "sin novedades"
+        })
+
+    resultado = df.join(df.apply(evaluar, axis=1))
+    return resultado
+
+
+def resumen_riesgo(df_evaluado: pd.DataFrame) -> dict:
+    total = len(df_evaluado)
+    en_riesgo = int(df_evaluado["en_riesgo"].sum())
+    return {
+        "total_estudiantes": total,
+        "en_riesgo": en_riesgo,
+        "porcentaje_riesgo": round((en_riesgo / total) * 100, 1) if total else 0,
+    }
