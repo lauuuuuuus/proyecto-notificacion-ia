@@ -1,7 +1,6 @@
 id_estudiante,nombre,correo_tutor,materia,nota_corte1,nota_corte2,nota_corte3
-1001,Juan Perez,tutor.juan@universidad.edu.co,Calculo I,4.2,3.5,2.8
-1002,Maria Gomez,tutor.maria@universidad.edu.co,Programacion I,4.5,4.3,4.1
-1003,Carlos Rodriguez,tutor.carlos@universidad.edu.co,Fisica I,3.8,3.0,2.5
-1004,Laura Torres,tutor.laura@universidad.edu.co,Calculo I,2.9,2.7,2.4
-1005,Andres Lopez,tutor.andres@universidad.edu.co,Algebra Lineal,4.8,4.6,4.5
-1006,Sofia Ramirez,tutor.sofia@universidad.edu.co,Programacion I,3.2,2.6,1.9
+2001,Laura Acosta,lauras.acostar@utadeo.edu.co,Calculo I,4.0,3.2,2.6
+2002,Sara Aldana,sara.aldanag@utadeo.edu.co,Programacion I,3.5,2.9,2.3
+2003,Diego Amaya,diegoa.amayag@utadeo.edu.co,Fisica I,4.3,4.1,3.9
+2004,Valerie Beltran,valeriej.beltranm@utadeo.edu.co,Algebra Lineal,3.0,2.5,1.8
+2005,Greis Aldana,greisk.aldanap@utadeo.edu.co,Calculo I,4.6,4.4,4.2
